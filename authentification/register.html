@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Connexion - NX STORE</title>
-  <meta name="description" content="Connectez-vous à NX STORE pour profiter de tous les services gaming, streaming et digitaux.">
+  <title>Inscription - NX STORE</title>
+  <meta name="description" content="Créez votre compte NX STORE et accédez à tous nos services gaming, streaming et digitaux.">
   <meta name="theme-color" content="#030508">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -33,7 +33,6 @@
     @keyframes orbFloat { 0% { transform:translate(0,0) scale(1); } 25% { transform:translate(30px,-20px) scale(1.1); } 50% { transform:translate(-20px,-40px) scale(0.9); } 75% { transform:translate(-30px,10px) scale(1.05); } 100% { transform:translate(0,0) scale(1); } }
     @keyframes pulseGlow { 0% { box-shadow:0 0 0 0 rgba(0,229,255,0.7); } 70% { box-shadow:0 0 0 25px rgba(0,229,255,0); } 100% { box-shadow:0 0 0 0 rgba(0,229,255,0); } }
     @keyframes floatCyan { 0%,100% { transform:translateY(0) rotate(0deg); } 50% { transform:translateY(-12px) rotate(1deg); } }
-    @keyframes neonPulse { 0%,100% { text-shadow:0 0 5px var(--cyan),0 0 20px var(--cyan),0 0 40px var(--cyan); } 50% { text-shadow:0 0 2px var(--cyan),0 0 10px var(--cyan),0 0 20px var(--cyan); } }
 
     .reveal { opacity:0; transform:translateY(40px) scale(0.92); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1); }
     .reveal.visible { opacity:1; transform:translateY(0) scale(1); }
@@ -81,7 +80,7 @@
     .btn-outline-cyan:hover { background:rgba(0,229,255,0.15); transform:translateY(-4px); box-shadow:0 8px 30px var(--cyan-glow); }
 
     .auth-container { display:flex; justify-content:center; align-items:center; min-height:100vh; padding:120px 20px 60px; }
-    .auth-card { background:var(--bg-card); border:1px solid var(--border-glass); border-radius:var(--card-radius); padding:40px; width:100%; max-width:460px; box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(0,229,255,0.1); transition:var(--transition-fluid); }
+    .auth-card { background:var(--bg-card); border:1px solid var(--border-glass); border-radius:var(--card-radius); padding:40px; width:100%; max-width:520px; box-shadow:0 20px 50px rgba(0,0,0,0.8),0 0 30px rgba(0,229,255,0.1); transition:var(--transition-fluid); }
     .auth-card:hover { border-color:rgba(0,229,255,0.3); box-shadow:0 30px 70px rgba(0,0,0,0.9),0 0 60px rgba(0,229,255,0.2); }
     .auth-card h2 { font-family:'Orbitron',monospace; font-size:28px; font-weight:800; margin-bottom:8px; text-align:center; background:linear-gradient(135deg,#fff,#00E5FF); -webkit-background-clip:text; background-clip:text; color:transparent; }
     .auth-card p { color:var(--text-muted); text-align:center; margin-bottom:24px; }
@@ -91,7 +90,7 @@
     .form-group input:focus { border-color:var(--cyan); outline:none; box-shadow:0 0 10px var(--cyan-glow); }
     .error-message { color:var(--magenta); font-size:13px; margin-top:4px; display:none; }
     .submit-btn { width:100%; justify-content:center; margin-top:12px; }
-    .auth-links { display:flex; justify-content:space-between; margin-top:20px; font-size:14px; }
+    .auth-links { display:flex; justify-content:center; margin-top:20px; font-size:14px; }
     .auth-links a { color:var(--cyan); font-weight:600; transition:var(--transition-fluid); }
     .auth-links a:hover { color:#fff; text-shadow:0 0 10px var(--cyan-glow); }
     .divider { display:flex; align-items:center; gap:12px; margin:24px 0; color:var(--text-muted); font-size:13px; }
@@ -170,18 +169,20 @@
   <main>
     <div class="auth-container">
       <div class="auth-card reveal">
-        <h2>Connexion</h2>
-        <p>Accédez à votre compte NX STORE</p>
-        <form id="loginForm">
+        <h2>Inscription</h2>
+        <p>Rejoignez NX STORE</p>
+        <form id="registerForm">
+          <div class="form-group"><label><i class="fas fa-user"></i> Nom complet</label><input type="text" id="name" placeholder="Votre nom" required><div class="error-message" id="nameError"></div></div>
           <div class="form-group"><label><i class="fas fa-envelope"></i> Email</label><input type="email" id="email" placeholder="exemple@mail.com" required><div class="error-message" id="emailError"></div></div>
-          <div class="form-group"><label><i class="fas fa-lock"></i> Mot de passe</label><input type="password" id="password" placeholder="Votre mot de passe" required><div class="error-message" id="passwordError"></div></div>
-          <button type="submit" class="btn-cyan submit-btn"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+          <div class="form-group"><label><i class="fas fa-phone"></i> Téléphone</label><input type="tel" id="phone" placeholder="+509XXXXXXXX" required><div class="error-message" id="phoneError"></div></div>
+          <div class="form-group"><label><i class="fas fa-lock"></i> Mot de passe</label><input type="password" id="password" placeholder="8 caractères minimum" required><div class="error-message" id="passwordError"></div></div>
+          <div class="form-group"><label><i class="fas fa-lock"></i> Confirmer</label><input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required><div class="error-message" id="confirmPasswordError"></div></div>
+          <button type="submit" class="btn-cyan submit-btn"><i class="fas fa-user-plus"></i> S'inscrire</button>
         </form>
         <div class="divider">ou</div>
-        <button class="google-btn" id="googleLoginBtn"><i class="fab fa-google"></i> Se connecter avec Google</button>
-        <div class="auth-links">
-          <a href="/authentification/forgot-password.html">Mot de passe oublié ?</a>
-          <a href="/authentification/register.html">Créer un compte</a>
+        <button class="google-btn" id="googleRegisterBtn"><i class="fab fa-google"></i> S'inscrire avec Google</button>
+        <div class="auth-links" style="margin-top:24px;">
+          <a href="/authentification/login.html">Déjà un compte ? Connectez-vous</a>
         </div>
       </div>
     </div>
@@ -253,31 +254,44 @@
     });
     document.getElementById('doLogoutSide')?.addEventListener('click', () => { auth.signOut(); closeSidebar(); });
 
-    // Formulaire login
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    // Formulaire inscription
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
       const password = document.getElementById('password').value;
+      const confirm = document.getElementById('confirmPassword').value;
+
+      // Reset erreurs
+      document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
       let valid = true;
-      document.getElementById('emailError').style.display = 'none';
-      document.getElementById('passwordError').style.display = 'none';
+
+      if (!name) { document.getElementById('nameError').textContent = 'Nom requis'; document.getElementById('nameError').style.display = 'block'; valid = false; }
       if (!email) { document.getElementById('emailError').textContent = 'Email requis'; document.getElementById('emailError').style.display = 'block'; valid = false; }
-      if (!password) { document.getElementById('passwordError').textContent = 'Mot de passe requis'; document.getElementById('passwordError').style.display = 'block'; valid = false; }
+      if (!phone) { document.getElementById('phoneError').textContent = 'Téléphone requis'; document.getElementById('phoneError').style.display = 'block'; valid = false; }
+      if (password.length < 8) { document.getElementById('passwordError').textContent = '8 caractères minimum'; document.getElementById('passwordError').style.display = 'block'; valid = false; }
+      if (password !== confirm) { document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas'; document.getElementById('confirmPasswordError').style.display = 'block'; valid = false; }
+
       if (!valid) return;
+
       try {
-        await auth.signInWithEmailAndPassword(email, password);
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        await userCredential.user.updateProfile({ displayName: name });
+        // Stocker le téléphone peut être fait ici (Firestore)
+        window.location.href = '/authentification/success-inscription.html';
       } catch (error) {
-        let msg = 'Erreur de connexion';
-        if (error.code === 'auth/user-not-found') msg = 'Aucun compte trouvé avec cet email';
-        else if (error.code === 'auth/wrong-password') msg = 'Mot de passe incorrect';
+        let msg = "Erreur d'inscription";
+        if (error.code === 'auth/email-already-in-use') msg = 'Cet email est déjà utilisé';
         else if (error.code === 'auth/invalid-email') msg = 'Format email invalide';
-        document.getElementById('passwordError').textContent = msg;
-        document.getElementById('passwordError').style.display = 'block';
+        else if (error.code === 'auth/weak-password') msg = 'Mot de passe trop faible';
+        document.getElementById('emailError').textContent = msg;
+        document.getElementById('emailError').style.display = 'block';
       }
     });
 
     // Google Sign-In
-    document.getElementById('googleLoginBtn').addEventListener('click', async () => {
+    document.getElementById('googleRegisterBtn').addEventListener('click', async () => {
       try {
         await auth.signInWithPopup(googleProvider);
       } catch (error) {
