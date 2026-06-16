@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Wise - NX STORE | Recharge Wallet</title>
-  <meta name="description" content="Recharge Wise : transfert international. Taux 1$ = 146 Gdes. Livraison rapide.">
+  <title>USDT (TRC20) - NX STORE | Recharge Crypto</title>
+  <meta name="description" content="Recharge USDT (TRC20) : stablecoin. Taux 1$ = 146 Gdes. Livraison rapide.">
   <meta name="theme-color" content="#030508">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -146,10 +146,10 @@
   <main class="page-content">
     <div class="container">
       <div class="product-detail">
-        <div class="product-image"><img src="/assets/wise-logo.png" alt="Wise"></div>
+        <div class="product-image"><img src="/assets/usdt-logo.png" alt="USDT (TRC20)"></div>
         <div class="product-info">
-          <h2>Wise</h2>
-          <p class="desc">Recharge Wallet Wise. Taux : 1$ = 146 Gdes. Minimum 2$, maximum 5000$.</p>
+          <h2>USDT (TRC20)</h2>
+          <p class="desc">Stablecoin USDT sur réseau TRC20. Taux : 1$ = 146 Gdes. Minimum 2$, maximum 5000$.</p>
           <div class="category-divider reveal"><span class="line"></span><span class="label"><i class="fas fa-dollar-sign"></i> Montant (USD)</span><span class="line"></span></div>
           <div class="pack-row">
             <div class="pack-item selected" id="customPack">
@@ -164,8 +164,8 @@
           </div>
           <p style="color:var(--text-muted); font-size:13px;">Soit <strong id="convertedAmount">292 Gdes</strong></p>
           <div class="category-divider reveal"><span class="line"></span><span class="label"><i class="fas fa-user"></i> Informations</span><span class="line"></span></div>
-          <div class="form-group"><label><i class="fas fa-at"></i> @wisetag ou email Wise</label><input type="text" id="wiseTag" placeholder="@votrewisetag ou email"></div>
-          <div class="form-group"><label><i class="fab fa-whatsapp"></i> Numéro WhatsApp</label><input type="tel" id="wiseWhatsapp" placeholder="+509XXXXXXXX"></div>
+          <div class="form-group"><label><i class="fas fa-wallet"></i> Adresse du Wallet électronique</label><input type="text" id="usdtWallet" placeholder="TBcmhXsvnsy... (TRC20)"></div>
+          <div class="form-group"><label><i class="fab fa-whatsapp"></i> Numéro WhatsApp</label><input type="tel" id="usdtWhatsapp" placeholder="+509XXXXXXXX"></div>
           <button class="btn-cyan" id="addToCartBtn" style="margin-top:8px;"><i class="fas fa-cart-plus"></i> Ajouter au panier</button>
         </div>
       </div>
@@ -227,14 +227,13 @@
       customPack.classList.add('selected');
       updatePrice();
     });
-
     customPack.classList.add('selected');
     updatePrice();
 
     document.getElementById('addToCartBtn').addEventListener('click', () => {
-      const wisetag = document.getElementById('wiseTag').value.trim();
-      const whatsapp = document.getElementById('wiseWhatsapp').value.trim();
-      if (!wisetag || !whatsapp) {
+      const wallet = document.getElementById('usdtWallet').value.trim();
+      const whatsapp = document.getElementById('usdtWhatsapp').value.trim();
+      if (!wallet || !whatsapp) {
         showToast('Veuillez remplir tous les champs.', 'error');
         return;
       }
@@ -246,10 +245,10 @@
       }
       const gdes = Math.round(usd * rate);
       cart.push({
-        product: 'Wise',
+        product: 'USDT (TRC20)',
         pack: usd + ' USD',
         price: gdes + ' Gdes',
-        fields: { wisetag, whatsapp, usd },
+        fields: { wallet, whatsapp, usd },
         date: new Date().toISOString()
       });
       localStorage.setItem('nx_cart', JSON.stringify(cart));
