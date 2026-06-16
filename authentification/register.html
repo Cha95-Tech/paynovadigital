@@ -201,16 +201,19 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script>
     const firebaseConfig = {
-apiKey: "AIzaSyCoOaJMJiCrwuQhvpwjGovLEvYaaYChIn0",
-  authDomain: "paynovadigitalht.firebaseapp.com",
-  projectId: "paynovadigitalht",
-  storageBucket: "paynovadigitalht.firebasestorage.app",
-  messagingSenderId: "127590329061",
-  appId: "1:127590329061:web:a5cb4c669e73e97706820c",
+      apiKey: "AIzaSyCoOaJMJiCrwuQhvpwjGovLEvYaaYChIn0",
+      authDomain: "paynovadigitalht.firebaseapp.com",
+      projectId: "paynovadigitalht",
+      storageBucket: "paynovadigitalht.firebasestorage.app",
+      messagingSenderId: "127590329061",
+      appId: "1:127590329061:web:a5cb4c669e73e97706820c",
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+    // Flag pour éviter la redirection auto pendant l'inscription
+    let isRegistering = false;
 
     // Particules
     (function() {
@@ -248,15 +251,22 @@ apiKey: "AIzaSyCoOaJMJiCrwuQhvpwjGovLEvYaaYChIn0",
       if (authDiv) authDiv.style.display = user ? 'none' : 'flex';
       if (logoutDiv) logoutDiv.style.display = user ? 'block' : 'none';
     }
+
+    // Gestion de l'état de connexion
     auth.onAuthStateChanged(user => {
       updateSidebarUser(user);
-      if (user) window.location.href = '/compte/dashboard.html';
+      // Redirection seulement si l'utilisateur est connecté et qu'on n'est pas en cours d'inscription
+      if (user && !isRegistering) {
+        window.location.href = '/compte/dashboard.html';
+      }
     });
+
     document.getElementById('doLogoutSide')?.addEventListener('click', () => { auth.signOut(); closeSidebar(); });
 
     // Formulaire inscription
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
@@ -264,38 +274,92 @@ apiKey: "AIzaSyCoOaJMJiCrwuQhvpwjGovLEvYaaYChIn0",
       const confirm = document.getElementById('confirmPassword').value;
 
       // Reset erreurs
-      document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.style.display = 'none';
+        el.textContent = '';
+      });
+
       let valid = true;
 
-      if (!name) { document.getElementById('nameError').textContent = 'Nom requis'; document.getElementById('nameError').style.display = 'block'; valid = false; }
-      if (!email) { document.getElementById('emailError').textContent = 'Email requis'; document.getElementById('emailError').style.display = 'block'; valid = false; }
-      if (!phone) { document.getElementById('phoneError').textContent = 'Téléphone requis'; document.getElementById('phoneError').style.display = 'block'; valid = false; }
-      if (password.length < 8) { document.getElementById('passwordError').textContent = '8 caractères minimum'; document.getElementById('passwordError').style.display = 'block'; valid = false; }
-      if (password !== confirm) { document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas'; document.getElementById('confirmPasswordError').style.display = 'block'; valid = false; }
+      if (!name) {
+        document.getElementById('nameError').textContent = 'Nom requis';
+        document.getElementById('nameError').style.display = 'block';
+        valid = false;
+      }
+      if (!email) {
+        document.getElementById('emailError').textContent = 'Email requis';
+        document.getElementById('emailError').style.display = 'block';
+        valid = false;
+      }
+      if (!phone) {
+        document.getElementById('phoneError').textContent = 'Téléphone requis';
+        document.getElementById('phoneError').style.display = 'block';
+        valid = false;
+      }
+      if (password.length < 8) {
+        document.getElementById('passwordError').textContent = '8 caractères minimum';
+        document.getElementById('passwordError').style.display = 'block';
+        valid = false;
+      }
+      if (password !== confirm) {
+        document.getElementById('confirmPasswordError').textContent = 'Les mots de passe ne correspondent pas';
+        document.getElementById('confirmPasswordError').style.display = 'block';
+        valid = false;
+      }
 
       if (!valid) return;
 
+      // On bloque la redirection automatique vers le dashboard
+      isRegistering = true;
+
       try {
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        // Mise à jour du profil
         await userCredential.user.updateProfile({ displayName: name });
-        // Stocker le téléphone peut être fait ici (Firestore)
+        // Ici vous pourriez stocker le téléphone dans Firestore si besoin
+        console.log('Inscription réussie pour', userCredential.user.email);
+        // Redirection vers la page de succès
         window.location.href = '/authentification/success-inscription.html';
       } catch (error) {
-        let msg = "Erreur d'inscription";
-        if (error.code === 'auth/email-already-in-use') msg = 'Cet email est déjà utilisé';
-        else if (error.code === 'auth/invalid-email') msg = 'Format email invalide';
-        else if (error.code === 'auth/weak-password') msg = 'Mot de passe trop faible';
+        // Réafficher l'erreur dans la console pour déboguer
+        console.error('Code erreur Firebase:', error.code, 'Message:', error.message);
+
+        let msg = "Erreur d'inscription. Veuillez réessayer.";
+        if (error.code === 'auth/email-already-in-use') {
+          msg = 'Cet email est déjà utilisé.';
+        } else if (error.code === 'auth/invalid-email') {
+          msg = 'Format email invalide.';
+        } else if (error.code === 'auth/weak-password') {
+          msg = 'Mot de passe trop faible (minimum 6 caractères).';
+        } else if (error.code === 'auth/network-request-failed') {
+          msg = 'Problème réseau. Vérifiez votre connexion.';
+        } else if (error.code === 'auth/too-many-requests') {
+          msg = 'Trop de tentatives. Attendez un moment.';
+        } else if (error.code === 'auth/operation-not-allowed') {
+          msg = 'L\'inscription par email/mot de passe est désactivée dans Firebase.';
+        } else if (error.code === 'auth/unauthorized-domain') {
+          msg = 'Domaine non autorisé par Firebase. Ajoutez ce domaine dans la console Firebase.';
+        }
         document.getElementById('emailError').textContent = msg;
         document.getElementById('emailError').style.display = 'block';
+        // On relâche le flag pour permettre les futures redirections
+        isRegistering = false;
       }
     });
 
     // Google Sign-In
     document.getElementById('googleRegisterBtn').addEventListener('click', async () => {
       try {
+        isRegistering = true; // bloquer redirection auto
         await auth.signInWithPopup(googleProvider);
+        // La redirection sera gérée par onAuthStateChanged après coup
+        // mais on peut forcer une redirection vers le dashboard si l'inscription Google réussit
+        // (le flag sera remis à false après)
+        setTimeout(() => { isRegistering = false; }, 2000);
       } catch (error) {
-        alert(error.message);
+        console.error('Erreur Google Sign-In:', error.code, error.message);
+        alert('Erreur lors de l\'inscription avec Google: ' + error.message);
+        isRegistering = false;
       }
     });
 
