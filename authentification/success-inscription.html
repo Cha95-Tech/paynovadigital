@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ht">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Inscription réussie - NX STORE</title>
-  <meta name="description" content="Votre compte NX STORE a été créé avec succès. Bienvenue dans l'univers gaming.">
+  <title>Enskripsyon reyisi - PayNova Digital</title>
+  <meta name="description" content="Kont PayNova Digital ou a byen kreye. Byenvini nan linivè gaming la.">
   <meta name="theme-color" content="#030508">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -109,7 +109,7 @@
     .live-indicator { position:fixed; top:80px; right:20px; z-index:998; display:flex; align-items:center; gap:6px; background:rgba(0,229,255,0.06); border:1px solid rgba(0,229,255,0.2); border-radius:20px; padding:4px 12px; font-size:10px; font-weight:700; color:var(--cyan); font-family:'Orbitron',monospace; }
     .live-dot { width:6px; height:6px; background:#00ff88; border-radius:50%; animation:pulseGlow 1.5s infinite; }
 
-    /* Confettis */
+    /* Konfeti */
     .confetti-container { position:fixed; top:50%; left:50%; pointer-events:none; z-index:0; }
     .confetti { position:absolute; width:8px; height:8px; border-radius:2px; animation:confetti 2s ease-out forwards; }
   </style>
@@ -126,59 +126,59 @@
   <header id="main-header">
     <div class="container">
       <div class="header-flex">
-        <a href="/" class="logo-text">NX STORE</a>
+        <a href="/" class="logo-text">PayNova Digital</a>
         <nav class="nav-links">
-          <a href="/#gaming">Gaming</a> <a href="/#streaming">Streaming</a> <a href="/#services">Services</a>
-          <a href="/support/">Support</a> <a href="/authentification/login.html" style="color:var(--cyan);">Connexion</a>
+          <a href="/#gaming">Gaming</a> <a href="/#streaming">Streaming</a> <a href="/#services">Sèvis</a>
+          <a href="/support/">Sipò</a> <a href="/authentification/login.html" style="color:var(--cyan);">Koneksyon</a>
         </nav>
-        <button class="menu-btn" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i> Menu</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Meni"><i class="fas fa-bars"></i> Meni</button>
       </div>
     </div>
   </header>
 
   <div class="overlay" id="overlay"></div>
   <aside class="sidebar" id="sidebar" aria-hidden="true">
-    <div class="sidebar-header"><span class="logo-text" style="font-size:18px;">NX</span> <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button></div>
+    <div class="sidebar-header"><span class="logo-text" style="font-size:18px;">PayNova</span> <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button></div>
     <div class="user-mini" id="sidebarUser">
       <div class="avatar-mini"><i class="fas fa-gamepad"></i></div>
-      <div class="user-name-side" id="sideUserName">Invité</div>
-      <div class="user-email-side" id="sideUserEmail">Connectez-vous</div>
-      <div class="points-side" style="display:inline-block;background:rgba(0,229,255,0.1);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;color:var(--cyan);margin-top:12px;border:1px solid rgba(0,229,255,0.2);"><i class="fas fa-bolt"></i> 0 NX Pts</div>
+      <div class="user-name-side" id="sideUserName">Envite</div>
+      <div class="user-email-side" id="sideUserEmail">Konekte ou</div>
+      <div class="points-side" style="display:inline-block;background:rgba(0,229,255,0.1);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;color:var(--cyan);margin-top:12px;border:1px solid rgba(0,229,255,0.2);"><i class="fas fa-bolt"></i> 0 PN Pts</div>
     </div>
     <nav class="sidebar-nav">
-      <a href="/"><i class="fas fa-home"></i> Accueil</a>
+      <a href="/"><i class="fas fa-home"></i> Akèy</a>
       <a href="/#gaming"><i class="fas fa-gamepad"></i> Gaming</a>
       <a href="/#streaming"><i class="fas fa-film"></i> Streaming</a>
-      <a href="/#services"><i class="fas fa-credit-card"></i> Services</a>
-      <a href="/commandes/"><i class="fas fa-shopping-bag"></i> Commandes</a>
-      <a href="/compte/dashboard.html"><i class="fas fa-user-circle"></i> Mon compte</a>
-      <a href="/support/"><i class="fas fa-headset"></i> Support</a>
+      <a href="/#services"><i class="fas fa-credit-card"></i> Sèvis</a>
+      <a href="/commandes/"><i class="fas fa-shopping-bag"></i> Kòmand</a>
+      <a href="/compte/dashboard.html"><i class="fas fa-user-circle"></i> Kont mwen</a>
+      <a href="/support/"><i class="fas fa-headset"></i> Sipò</a>
     </nav>
     <div id="authSide" style="padding:24px;display:flex;flex-direction:column;gap:12px;">
-      <a href="/authentification/login.html" class="btn-cyan" style="text-align:center;">Connexion</a>
-      <a href="/authentification/register.html" class="btn-outline-cyan" style="text-align:center;">Inscription</a>
+      <a href="/authentification/login.html" class="btn-cyan" style="text-align:center;">Koneksyon</a>
+      <a href="/authentification/register.html" class="btn-outline-cyan" style="text-align:center;">Enskripsyon</a>
     </div>
     <div id="logoutSide" style="display:none;padding:24px;">
-      <button class="btn-outline-cyan" id="doLogoutSide" style="width:100%;"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+      <button class="btn-outline-cyan" id="doLogoutSide" style="width:100%;"><i class="fas fa-sign-out-alt"></i> Dekoneksyon</button>
     </div>
   </aside>
 
-  <a href="https://wa.me/17879684394" target="_blank" rel="noopener" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
-  <div class="cart-float" id="cartFloat" role="button" aria-label="Panier"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
+  <a href="https://wa.me/50944710889" target="_blank" rel="noopener" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+  <div class="cart-float" id="cartFloat" role="button" aria-label="Panyen"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
 
   <main>
     <div class="status-container">
       <div class="status-card reveal">
         <div class="icon-success"><i class="fas fa-check-circle"></i></div>
-        <h2>Inscription réussie !</h2>
-        <p>Bienvenue dans l'univers <strong>NX STORE</strong>.<br>Votre compte a été créé avec succès.</p>
-        <p style="font-size:13px; color:var(--text-muted); margin-bottom:24px;">Un email de vérification vous a été envoyé.<br>Vérifiez votre boîte de réception pour activer toutes les fonctionnalités.</p>
+        <h2>Enskripsyon reyisi !</h2>
+        <p>Byenvini nan linivè <strong>PayNova Digital</strong>.<br>Kont ou a byen kreye.</p>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:24px;">Yon imèl verifikasyon voye ba ou.<br>Tcheke bwat resepsyon w pou aktive tout fonksyonalite yo.</p>
         <div class="btn-group">
-          <a href="/authentification/login.html" class="btn-cyan"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
-          <a href="/authentification/verify-email.html" class="btn-outline-cyan"><i class="fas fa-envelope"></i> Vérifier l'email</a>
+          <a href="/authentification/login.html" class="btn-cyan"><i class="fas fa-sign-in-alt"></i> Konekte</a>
+          <a href="/authentification/verify-email.html" class="btn-outline-cyan"><i class="fas fa-envelope"></i> Verifye imèl la</a>
         </div>
         <div class="auth-links">
-          <a href="/"><i class="fas fa-home"></i> Retour à l'accueil</a>
+          <a href="/"><i class="fas fa-home"></i> Retounen nan akèy</a>
         </div>
       </div>
     </div>
@@ -187,8 +187,8 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="footer-links"><a href="/#gaming">Gaming</a> <a href="/#streaming">Streaming</a> <a href="/#services">Services</a> <a href="/support/">Support</a> <a href="/legal/conditions-utilisation.html">CGU</a></div>
-        <div class="footer-bottom">© 2026 NX STORE — L'univers digital, sans limite.</div>
+        <div class="footer-links"><a href="/#gaming">Gaming</a> <a href="/#streaming">Streaming</a> <a href="/#services">Sèvis</a> <a href="/support/">Sipò</a> <a href="/legal/conditions-utilisation.html">CGU</a></div>
+        <div class="footer-bottom">© 2026 PayNova Digital — Linivè dijital la, san limit.</div>
       </div>
     </div>
   </footer>
@@ -197,18 +197,18 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script>
     const firebaseConfig = {
-     apiKey: "AIzaSyCoOaJMJiCrwuQhvpwjGovLEvYaaYChIn0",
-  authDomain: "paynovadigitalht.firebaseapp.com",
-  projectId: "paynovadigitalht",
-  storageBucket: "paynovadigitalht.firebasestorage.app",
-  messagingSenderId: "127590329061",
-  appId: "1:127590329061:web:a5cb4c669e73e97706820c",
-  measurementId: "G-T7B86GY2XQ"
+      apiKey: "AIzaSyCoOaJMJiCrwuQhvpwjGovLEvYaaYChIn0",
+      authDomain: "paynovadigitalht.firebaseapp.com",
+      projectId: "paynovadigitalht",
+      storageBucket: "paynovadigitalht.firebasestorage.app",
+      messagingSenderId: "127590329061",
+      appId: "1:127590329061:web:a5cb4c669e73e97706820c",
+      measurementId: "G-T7B86GY2XQ"
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Particules
+    // Patikil background
     (function() {
       const c = document.getElementById('bgLayer');
       if (!c) return;
@@ -220,7 +220,7 @@
       }
     })();
 
-    // Confettis
+    // Konfeti
     (function() {
       const container = document.getElementById('confettiContainer');
       if (!container) return;
@@ -260,15 +260,15 @@
 
     function updateSidebarUser(user) {
       const authDiv = document.getElementById('authSide'), logoutDiv = document.getElementById('logoutSide');
-      document.getElementById('sideUserName').textContent = user ? (user.displayName || user.email.split('@')[0] || 'Membre') : 'Invité';
-      document.getElementById('sideUserEmail').textContent = user ? user.email : 'Connectez-vous';
+      document.getElementById('sideUserName').textContent = user ? (user.displayName || user.email.split('@')[0] || 'Manm') : 'Envite';
+      document.getElementById('sideUserEmail').textContent = user ? user.email : 'Konekte ou';
       if (authDiv) authDiv.style.display = user ? 'none' : 'flex';
       if (logoutDiv) logoutDiv.style.display = user ? 'block' : 'none';
     }
     auth.onAuthStateChanged(user => updateSidebarUser(user));
     document.getElementById('doLogoutSide')?.addEventListener('click', () => { auth.signOut(); closeSidebar(); });
 
-    // Scroll reveal
+    // Animasyon revelasyon
     const revealEls = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }) }, { threshold: 0.1 });
     revealEls.forEach(el => observer.observe(el));
